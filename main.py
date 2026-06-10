@@ -3,21 +3,21 @@ import re
 import json
 import sys
 
-# Add python3 directory to sys.path so we can import XmanagerCrypto
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'python3'))
 
 try:
     from XmanagerCrypto import XShellCrypto
-except ImportError:
-    print("[!] ERROR: 'XmanagerCrypto.py' could not be found!")
-    print("Please ensure the 'python3' directory contains 'XmanagerCrypto.py'.")
+except ImportError as e:
+    print(f"[!] ERROR: Import failed: {e}")
+    print("Hint: If the error mentions 'Crypto', make sure to run: pip install pycryptodome")
+    print("Also ensure the 'python3' directory contains 'XmanagerCrypto.py'.")
     sys.exit(1)
 
 # ==============================================================================
 # SETTINGS: PLEASE EDIT THIS SECTION ACCORDING TO YOUR ENVIRONMENT
 # ==============================================================================
-XSHELL_SESSIONS_DIR = r"C:\Users\abdulsamed\Documents\NetSarang Computer\8\Xshell\Sessions"
-MASTER_PASSWORD = "x.K"
+XSHELL_SESSIONS_DIR = r"C:\Users\{USERNAME}\Documents\NetSarang Computer\8\Xshell\Sessions"
+MASTER_PASSWORD = "master-password"
 XSHELL_VERSION = "7"  # Your Xshell version
 # ==============================================================================
 
