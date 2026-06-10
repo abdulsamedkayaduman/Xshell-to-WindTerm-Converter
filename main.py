@@ -2,6 +2,7 @@ import os
 import re
 import json
 import sys
+import uuid
 
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'python3'))
 
@@ -117,14 +118,26 @@ for root, dirs, files in os.walk(XSHELL_SESSIONS_DIR):
                     print(f"[!] Failed to decrypt password ({label}): {e}")
 
             # Create WindTerm Session Object
-            target = f"{username}@{host}:{port}" if username else f"{host}:{port}"
+            target = f"{username}@{host}" if username else host
+            try:
+                session_port = int(port)
+            except ValueError:
+                session_port = 22
+
+            session_uuid = str(uuid.uuid4())
+
             session_obj = {
                 "session.group": group,
+                "session.icon": "session::square-coral",
                 "session.label": label,
+                "session.port": session_port,
                 "session.protocol": "SSH",
                 "session.target": target,
-                "session.password": decrypted_password
+                "session.uuid": session_uuid
             }
+            if decrypted_password:
+                session_obj["session.description"] = decrypted_password
+
             windterm_sessions.append(session_obj)
             print(f"[+] Decrypted and Added: {group + '/' if group else ''}{label}")
 

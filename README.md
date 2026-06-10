@@ -36,6 +36,11 @@ This repository is built upon [HyperSine's XmanagerCrypto](https://github.com/Hy
    ```
 5. **Importing to WindTerm**: The script will generate a `user.sessions` file in the same directory. Move or copy this file into WindTerm's `profiles/default.v10` folder (or your specific profile folder) to import the sessions.
 
+## Security Recommendation
+
+> [!IMPORTANT]
+> Because this converter decrypts Xshell session passwords and writes them as plain text to the session's description field (visible in the WindTerm GUI), it is highly recommended to **delete the password from the description field** after you have successfully saved/configured your login credentials in WindTerm.
+
 ## Dependencies
 
 - Python 3.x
@@ -44,3 +49,4 @@ This repository is built upon [HyperSine's XmanagerCrypto](https://github.com/Hy
 ## Credits
 
 - Password decryption logic by [HyperSine](https://github.com/HyperSine/how-does-Xmanager-encrypt-password).
+
